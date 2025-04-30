@@ -12,7 +12,7 @@ Copy and paste the following code into your website or blog:
 
 ```html
 <iframe 
-  src="https://yourusername.github.io/bead-count-estimator" 
+  src="https://continentalbeads.github.io/bead-count-estimator/" 
   width="100%" 
   height="500" 
   frameborder="0" 
@@ -22,6 +22,7 @@ Copy and paste the following code into your website or blog:
   Tool provided by <a href="https://www.continentalbeadsuppliers.com" target="_blank" rel="noopener">Continental Bead Suppliers</a>
 </p>
 ```
+
 
 ## ✨ About the Creator
 
