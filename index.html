@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bead Count Estimator</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 2rem; }
+    label { display: block; margin-top: 1rem; }
+    input, select { width: 100%; padding: 0.5rem; margin-top: 0.25rem; }
+    .results { margin-top: 2rem; padding: 1rem; background-color: #f0f0f0; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Bead Count Estimator</h1>
+  <form id="beadEstimator">
+    <label>Length:
+      <input type="number" id="length" step="0.1" required />
+    </label>
+    <label>Units:
+      <select id="units"><option value="inches">Inches</option><option value="cm">Centimeters</option></select>
+    </label>
+    <label>Bead Size (mm):
+      <input type="number" id="beadSize" step="0.1" required />
+    </label>
+    <label>Spacer Bead Size (optional, mm):
+      <input type="number" id="spacerSize" step="0.1" />
+    </label>
+    <button type="submit">Calculate</button>
+  </form>
+  <div class="results" id="results" style="display:none;">
+    <p><strong>Estimated Beads Needed:</strong> <span id="beadCount"></span></p>
+    <p><em>Tip: Add 2–5 extra beads to account for design variations or errors.</em></p>
+  </div>
+  <script>
+    document.getElementById('beadEstimator').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const length = parseFloat(document.getElementById('length').value);
+      const units = document.getElementById('units').value;
+      const beadSize = parseFloat(document.getElementById('beadSize').value);
+      const spacer = parseFloat(document.getElementById('spacerSize').value) || 0;
+      const mmLength = units === 'inches' ? length * 25.4 : length * 10;
+      const averageSize = spacer > 0 ? (beadSize + spacer) / 2 : beadSize;
+      const count = Math.ceil(mmLength / averageSize);
+      document.getElementById('beadCount').textContent = count;
+      document.getElementById('results').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
